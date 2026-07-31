@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+
+
+body{
+  background-color: rgb(7, 7, 7);
+  color:rgb(255,244,79);
+}
+
+button{
+  background-color: cyan;
+  padding:10px 10px;
+  border-radius:15px;
+  color:black;
+  width:100%;
+  cursor:pointer;
+  transition: all ease 0.5s;
+}
+button:hover{
+  transform: scale(1.05);
+}
+.highlite::before{
+  content:"";
+  width:0 ;
+  position:absolute;
+  background-color: yellow;
+  top:0;
+  left:0;
+  bottom:0;
+  height: full;
+  transition:all ease-in-out 0.2s;
+}
+.highlite:hover::before{
+  content:"";
+  width: 5px;
+}
+h1{
+  color:rgb(255,244,79);
+}
+p{
+  color: #9b9b9b;
+}
