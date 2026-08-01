@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Hero from './Hero'
 import Navbar from './Navbar'
 import {features, work} from './data'
 import Circularscore from './Circularscore'
 
-const Home = ({data,handleanalysis}) => {
+const Home = ({data,handleanalysis,handlefile,result}) => {
+  const fileInputRef=useRef(null);
   return (
     <div>
       <Navbar />
@@ -37,9 +38,16 @@ const Home = ({data,handleanalysis}) => {
           </div>
       </section>
       <section>
+        <div className='mx-[5rem] py-[50px] flex flex-col gap-10 border-1 border-gray-600 px-[30px]'>
           <h1 className='text-6xl font-bold'>Upload your Resume</h1>
-          <input type="file" className='bg-gray-700 px-[1rem] text-center'/> <button>hlo</button>
-          <Circularscore />
+          <input type="file" accept='.pdf' ref={fileInputRef} onChange={handlefile} className='hidden bg-gray-700 px-[1rem] text-center'/>
+          <button 
+          onClick={()=>{fileInputRef.current.click()}}
+          className='px-[30px] py-[10px] border-1 font-bold md:w-fit cursor-pointer hover:scale-110 transition-transform border-gray-500 rounded-xs'>
+            Browse files
+          </button>
+        </div>
+          <Circularscore result={result} />
       </section>
     </div>
   )

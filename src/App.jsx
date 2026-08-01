@@ -11,6 +11,13 @@ const App = () => {
   const [jobdesc, setjobdesc] = useState(""); // job description  
   const [loading, setloading] = useState("false"); // for the timeout afteBr file upload
   const [result, setresult] = useState({});   // for storing the result 
+  
+  const handlefile = (e)=>{
+    alert("File uploaded!!")
+    const file= e.target.files[0];
+    console.log(file)
+    setresumefile("file")
+  }
 
   const handleanalysis = async () =>{
     // if(!resumefile){
@@ -63,7 +70,7 @@ const App = () => {
     setresult(finalobj);
   }
   return (
-      <Home data={result} handleanalysis={handleanalysis}/>
+      <Home data={result} handlefile={handlefile} handleanalysis={handleanalysis} result={result} />
   )
 }
 

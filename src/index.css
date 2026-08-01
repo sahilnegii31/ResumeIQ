@@ -7,7 +7,7 @@ body{
   color:rgb(255,244,79);
 }
 
-button{
+/* button{
   background-color: cyan;
   padding:10px 10px;
   border-radius:15px;
@@ -18,7 +18,7 @@ button{
 }
 button:hover{
   transform: scale(1.05);
-}
+} */
 .highlite::before{
   content:"";
   width:0 ;
