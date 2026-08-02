@@ -1,24 +1,14 @@
 @import "tailwindcss";
 
-
+html{
+  scroll-behavior: smooth;
+}
 
 body{
   background-color: rgb(7, 7, 7);
   color:rgb(255,244,79);
 }
 
-/* button{
-  background-color: cyan;
-  padding:10px 10px;
-  border-radius:15px;
-  color:black;
-  width:100%;
-  cursor:pointer;
-  transition: all ease 0.5s;
-}
-button:hover{
-  transform: scale(1.05);
-} */
 .highlite::before{
   content:"";
   width:0 ;
@@ -36,7 +26,17 @@ button:hover{
 }
 h1{
   color:rgb(255,244,79);
+  font-family:"Cinzel Decorative";
 }
 p{
   color: #9b9b9b;
+  font-family: "Milonga";
 }
+h3{
+    font-family: "Milonga";
+}
+/* .glow:hover{
+    transform: scale(1.02);
+    box-shadow: 3px 3px 10px 
+                ,-3px -3px 10px;
+} */

@@ -1,16 +1,28 @@
-const work=[
-    {
-        id:1,
-        desc: "This is a sample ques"
-    },
-    {
-        id:2,
-        desc: "This is a sample ques"
-    },
-    {
-        id:3,
-        desc: "This is a sample ques"
-    }
+const work = [
+  {
+    id: 1,
+    number: "01",
+    title: "Upload Your Resume",
+    description: "Upload your resume as a PDF — clean and simple."
+  },
+  {
+    id: 2,
+    number: "02",
+    title: "Add a Job Description (Optional)",
+    description: "Paste a job description to check how well your resume matches the role — or skip and get a general analysis."
+  },
+  {
+    id: 3,
+    number: "03",
+    title: "AI Does the Analysis",
+    description: "Groq AI evaluates your resume like an ATS system, scanning for structure, keywords, and content quality."
+  },
+  {
+    id: 4,
+    number: "04",
+    title: "Get Your Report",
+    description: "Receive a score, matched/missing keywords, strengths, and clear next steps — all in one place."
+  }
 ]
 const features = [
   {

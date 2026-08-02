@@ -40,12 +40,20 @@ const App = () => {
     return fulltext;
   }
 
-  const handleanalysis = async () =>{
+  const inputhandler = (e) =>{
+    e.preventDefault();
+    alert("jd submitted")
+  }
+
+  const handleanalysis = async (jd) =>{
     if(!resumefile){
       alert("Please Upload a Resume File");
       return ;
     }
+    setjobdesc(jd);
+    console.log(jobdesc);
     setloading("true");
+    setjobdesc("");
     setresult(null); //purane result clear krke dobara analysis kro 
 
     const text = await extracttext(resumefile);
@@ -79,7 +87,7 @@ const App = () => {
             {
               role:"user",
               content: `Resume text :\n${text}\n\n
-              Job Description:\n"Looking for React developer with Node.js"`
+              Job Description:\n${jobdesc}`
             },
             ],
             temperature : 0.3,
@@ -98,7 +106,7 @@ const App = () => {
     setresult(finalobj);
   }
   return (
-      <Home data={result} handlefile={handlefile} handleanalysis={handleanalysis} result={result} />
+      <Home data={result} jobdesc={jobdesc} setjobdesc={setjobdesc} inputhandler={inputhandler} handlefile={handlefile} handleanalysis={handleanalysis} result={result} />
   )
 }
 
