@@ -4,28 +4,56 @@ import Hero from './components/Hero'
 import Home from './components/Home'
 import Circularscore from './components/Circularscore'
 import axios from "axios";
+import * as pdfjsLib from "pdfjs-dist";
+import workSrc from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = workSrc;
 
 const App = () => {
 
   const [resumefile, setresumefile] = useState(""); // for resume
+  const [resumetext, setresumetext] = useState(""); // extracted text 
   const [jobdesc, setjobdesc] = useState(""); // job description  
-  const [loading, setloading] = useState("false"); // for the timeout afteBr file upload
-  const [result, setresult] = useState({});   // for storing the result 
+  const [loading, setloading] = useState(false); // for the timeout afteBr file upload
+  const [result, setresult] = useState(null);   // for storing the result 
   
   const handlefile = (e)=>{
     alert("File uploaded!!")
     const file= e.target.files[0];
     console.log(file)
-    setresumefile("file")
+    setresumefile(file)// save pdf text into resumefile
+  }
+
+  //PDF to TEXT file 
+
+  const extracttext = async (file)=>{
+    const arraybuffer = await file.arrayBuffer()
+    const pdf = await pdfjsLib.getDocument({data: arraybuffer}).promise;
+    let fulltext= "";
+    for(let i=1;i<=pdf.numPages;i++){
+      const page = await pdf.getPage(i);
+      const textcontent = await page.getTextContent();
+      const pagetext= textcontent.items.map(item => item.str).join(" ");
+      fulltext+=pagetext + '\n';
+    }
+    console.log(fulltext);
+    return fulltext;
   }
 
   const handleanalysis = async () =>{
-    // if(!resumefile){
-    //   alert("Please Upload a Resume File");
-    //   return ;
-    // }
+    if(!resumefile){
+      alert("Please Upload a Resume File");
+      return ;
+    }
     setloading("true");
-    setresult(""); //purane result clear krke dobara analysis kro 
+    setresult(null); //purane result clear krke dobara analysis kro 
+
+    const text = await extracttext(resumefile);
+    console.log(text);
+    setresumetext(text);
+
+    
+
 
     //API call ka function 
 
@@ -50,8 +78,8 @@ const App = () => {
             },
             {
               role:"user",
-              content: `Resume:\n"hii helo"\n\n
-              Job Description:\n"Not Provided"`
+              content: `Resume text :\n${text}\n\n
+              Job Description:\n"Looking for React developer with Node.js"`
             },
             ],
             temperature : 0.3,

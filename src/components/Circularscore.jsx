@@ -1,10 +1,9 @@
 import React from 'react'
 
 const Circularscore = ({result}) => {
-    const score=result.score;
   const radius=70;
   const circumference = 2 * 22/7 * radius;
-  const offset = circumference - (score/100) * circumference;
+  const offset = circumference - (result?.score/100) * circumference;
     return (
         <div className='my-5 h-[160px] w-[160px] flex justify-center items-center relative'>
         <svg width = " 160" height="180" viewBox='0 0 180 180' className='absolute'>
@@ -13,8 +12,8 @@ const Circularscore = ({result}) => {
             strokeDasharray={circumference} strokeDashoffset={offset} strokeLinecap='round' transform='rotate(-90 90 90)'
             />
         </svg>
-            <div className=' bg-gray-600'>
-                <h1 className='text-4xl'>{score}</h1>
+            <div className=''>
+                <h1 className='text-4xl'>{result?.score}</h1>
             </div>
         </div>
   )

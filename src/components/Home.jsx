@@ -10,7 +10,7 @@ const Home = ({data,handleanalysis,handlefile,result}) => {
     <div>
       <Navbar />
       <Hero />
-      <button onClick={handleanalysis}> click me</button>
+
       <section className='text-center items-center flex flex-col gap-[5rem] justify-center mx-5'>
         <h1 className='text-6xl font-bold'>How It Works ? </h1>
         <div className='flex flex-col '>
@@ -46,8 +46,11 @@ const Home = ({data,handleanalysis,handlefile,result}) => {
           className='px-[30px] py-[10px] border-1 font-bold md:w-fit cursor-pointer hover:scale-110 transition-transform border-gray-500 rounded-xs'>
             Browse files
           </button>
+          <button onClick={handleanalysis} className='px-[30px] py-[10px] border-1 font-bold md:w-fit cursor-pointer hover:scale-110 transition-transform border-gray-500 rounded-xs'> click me</button>
         </div>
+        <div className={result ? "" : "hidden"}>
           <Circularscore result={result} />
+        </div>
       </section>
     </div>
   )
