@@ -5,9 +5,8 @@ import {features, work} from './data'
 import Circularscore from './Circularscore'
 import Footer from './Footer'
 
-const Home = ({data,handleanalysis,handlefile,result, inputhandler,jobdesc,setjobdesc}) => {
+const Home = ({data,handleanalysis,handlefile,result,jobdesc,setjobdesc}) => {
   const fileInputRef=useRef(null);
-  // const [jobdesc, setjobdesc] = useState("");
   return (
     <div>
       <Navbar />

@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
 import Home from './components/Home'
 import Circularscore from './components/Circularscore'
 import axios from "axios";
@@ -18,9 +16,7 @@ const App = () => {
   const [result, setresult] = useState(null);   // for storing the result 
   
   const handlefile = (e)=>{
-    alert("File uploaded!!")
     const file= e.target.files[0];
-    console.log(file)
     setresumefile(file)// save pdf text into resumefile
   }
 
@@ -36,13 +32,7 @@ const App = () => {
       const pagetext= textcontent.items.map(item => item.str).join(" ");
       fulltext+=pagetext + '\n';
     }
-    console.log(fulltext);
     return fulltext;
-  }
-
-  const inputhandler = (e) =>{
-    e.preventDefault();
-    alert("jd submitted")
   }
 
   const handleanalysis = async (jd) =>{
@@ -50,14 +40,13 @@ const App = () => {
       alert("Please Upload a Resume File");
       return ;
     }
+    alert("Successfully Uploaded!!")
     setjobdesc(jd);
-    console.log(jobdesc);
     setloading("true");
     setjobdesc("");
     setresult(null); //purane result clear krke dobara analysis kro 
 
     const text = await extracttext(resumefile);
-    console.log(text);
     setresumetext(text);
 
     
@@ -102,11 +91,10 @@ const App = () => {
 
   const analysis= response.data.choices[0].message.content;
   const finalobj=JSON.parse(analysis);
-  console.log(finalobj);
     setresult(finalobj);
   }
   return (
-      <Home data={result} jobdesc={jobdesc} setjobdesc={setjobdesc} inputhandler={inputhandler} handlefile={handlefile} handleanalysis={handleanalysis} result={result} />
+      <Home data={result} jobdesc={jobdesc} setjobdesc={setjobdesc} handlefile={handlefile} handleanalysis={handleanalysis} result={result} />
   )
 }
 
