@@ -4,21 +4,28 @@ import Navbar from './Navbar'
 import {features, work} from './data'
 import Circularscore from './Circularscore'
 import Footer from './Footer'
+import HoldButton from './HoldButton'
+import Filetrack from './Filetrack'
 
-const Home = ({data,handleanalysis,handlefile,result,jobdesc,setjobdesc}) => {
+
+const Home = ({data,handleanalysis,handlefile,result,jobdesc,setjobdesc , isdelete, file}) => {
+
+
+
   const fileInputRef=useRef(null);
   return (
     <div>
+
       <Navbar />
       <Hero />
 
       <section className='text-center items-center flex flex-col gap-[5rem] justify-center mx-5'>
         <h1 className='text-5xl md:text-6xl font-bold'>How It Works ? </h1>
-        <div className='flex flex-col gap-3 '>
+        <div className='flex flex-col '>
         {work.map((work,idx)=>{
             return (
                 <div className='flex flex-col min-w-[20rem] md:min-w-[50rem] w-[20rem] border-1 h-fit min-h-[12rem] p-[20px] border-gray-700 cursor-pointer highlite relative  items-center gap-4' key={idx} >
-                    <h1 className='text-xl md:text-3xl'>{work.number}-  {work.title}</h1>
+                    <h1 className='text-xl md:text-3xl'>{work.number} -  {work.title}</h1>
                     <p className='text-[17px] '>{work.description}</p>
                 </div>
             )
@@ -45,15 +52,17 @@ const Home = ({data,handleanalysis,handlefile,result,jobdesc,setjobdesc}) => {
           <div className='flex  flex-col gap-4'>
           <button 
           onClick={()=>{fileInputRef.current.click()}}
-          className='font-[Milonga] w-full md:w-[20rem] px-[30px] py-[10px] border-1 font-bold cursor-pointer hover:scale-110 transition-transform border-gray-500 rounded-xs'>
+          className=' w-full md:w-[20rem] px-[30px] py-[10px] border-1 font-bold cursor-pointer opacity-50 hover:opacity-100 transition-transform border-gray-500  rounded-[10px]'>
             Browse files
           </button>
           <div>
             <div className='flex flex-col gap-5 md:flex-row'>
-              <input type="text" onChange={(e) =>{setjobdesc(e.target.value)}} value={jobdesc} placeholder='Enter Job Description' className=' font-[Milonga] w-full md:w-[20rem] px-[30px] py-[10px] border-1 font-bold border-gray-500 rounded-xs '  />
+              <textarea type="text" onChange={(e) =>{setjobdesc(e.target.value)}} value={jobdesc} placeholder='Enter Job Description' className=' max-h-[10rem] w-full md:w-[20rem] px-[30px] py-[10px] border-1 min-h-[3rem] font-bold border-gray-500 rounded-[10px] '  />
               <button onClick={()=> handleanalysis(jobdesc)} 
-              className=' w-full md:w-[20rem] px-[30px] py-[10px] border-1 font-[Milonga] font-bold cursor-pointer hover:scale-110 transition-transform border-gray-500 rounded-xs'>
+              className=' w-full md:w-[15rem]  border-1 font-bold cursor-pointer opacity-50 hover:opacity-100 transition-transform border-gray-500 rounded-xl'>
                 Analyse</button>
+              <Filetrack file = {file} />  
+              <HoldButton isdelete = {isdelete} file = {file} />
             </div>
           </div>
           </div>
